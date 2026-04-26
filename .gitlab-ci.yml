@@ -1,0 +1,40 @@
+# GitLab Pages: сборка кладёт статику в `dist/`, job переименовывает в `public/`.
+#
+# VITE_HTML_BASE (pathname) задаётся из scripts/resolve-vite-base.mjs:
+#   CI_PAGES_URL → реальный путь; иначе CI_PROJECT_NAME; иначе /
+# В vite.config.js при этом: base=./ + <base href="...">, чтобы ./assets/* открывались
+# и при корне поддомена (…gitlab.io/), и при …gitlab.io/project/.
+# Переопределение: CI/CD variable PAGES_BASE (например пустой путь = задать вручную /).
+
+image: node:22-alpine
+
+stages:
+  - deploy
+
+# Не задавайте NODE_ENV=production до `npm ci`: иначе npm не ставит devDependencies,
+# а Vite и @vitejs/plugin-react как раз в devDependencies.
+cache:
+  key:
+    files:
+      - package-lock.json
+  paths:
+    - node_modules/
+
+pages:
+  stage: deploy
+  script:
+    - node -v
+    - npm -v
+    - npm ci --include=dev
+    - export VITE_HTML_BASE=$(node scripts/resolve-vite-base.mjs)
+    - echo "VITE_HTML_BASE=${VITE_HTML_BASE}"
+    - npm run build
+    - rm -rf public
+    - mv dist public
+  artifacts:
+    paths:
+      - public
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+    - if: $CI_COMMIT_BRANCH == "v2"
+

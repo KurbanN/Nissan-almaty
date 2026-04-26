@@ -1,0 +1,210 @@
+@import "tailwindcss";
+
+/* Dark (default): cinematic near-black. Light: brand-aligned with red accents. */
+:root,
+[data-theme="dark"] {
+  --app-ink: #0a0a0b;
+  --app-graphite: #141416;
+  --app-steel: #1e1e22;
+  --app-muted: #8a8a8f;
+  --app-fog: #c4c4c8;
+  --app-gold: #e60023;
+  --app-gold-dim: #b7001a;
+  --app-line: #2f2f34;
+  --app-line-strong: #3f3f45;
+  --app-scrim: rgba(0, 0, 0, 0.78);
+}
+
+[data-theme="light"] {
+  --app-ink: #f4f5f8;
+  --app-graphite: #ffffff;
+  --app-steel: #eceef3;
+  --app-muted: #5c636a;
+  --app-fog: #14161c;
+  --app-gold: #e60023;
+  --app-gold-dim: #b7001a;
+  --app-line: #e2e5eb;
+  --app-line-strong: #d1d5dc;
+  --app-scrim: rgba(15, 23, 42, 0.55);
+}
+
+@theme {
+  --color-ink: var(--app-ink);
+  --color-graphite: var(--app-graphite);
+  --color-steel: var(--app-steel);
+  --color-muted: var(--app-muted);
+  --color-fog: var(--app-fog);
+  --color-gold: var(--app-gold);
+  --color-gold-dim: var(--app-gold-dim);
+  --color-line: var(--app-line);
+  --color-line-strong: var(--app-line-strong);
+  /* Одна пара на все языки (латиница + кириллица): без смены гарнитуры при переключении EN/RU/KK. */
+  --font-display: "Oswald", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --animate-marquee: marquee 48s infinite linear;
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(calc(-100% - var(--gap)));
+    }
+  }
+}
+
+body {
+  background: var(--app-ink);
+  color: var(--app-fog);
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  font-family: var(--font-body);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+@utility clip-path {
+  clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
+}
+
+@utility banner-text-responsive {
+  @apply text-[44px] sm:text-[84px] md:text-[108px] lg:text-[128px] leading-[0.94] sm:leading-[0.9];
+}
+
+@utility value-text-responsive {
+  @apply text-xl md:text-2xl lg:text-[28px];
+}
+
+@utility marquee-text-responsive {
+  @apply text-[22px] sm:text-[28px] lg:text-[32px];
+}
+
+@utility contact-text-responsive {
+  @apply text-[36px] sm:text-[48px] md:text-[56px] lg:text-[80px];
+}
+
+@utility section-eyebrow {
+  @apply text-[10px] font-medium uppercase tracking-[0.28em] text-muted sm:text-[11px] sm:tracking-[0.45em];
+}
+
+/** Горизонтальные поля страницы (без max-width). */
+@utility section-gutter {
+  @apply px-4 sm:px-6 lg:px-8;
+}
+
+/** Контентная колонка: выравнивание с остальными блоками. */
+@utility section-shell {
+  @apply mx-auto w-full max-w-7xl section-gutter;
+}
+
+/** Вертикальный ритм секций (дилерский лендинг). */
+@utility section-y {
+  @apply py-14 lg:py-20;
+}
+
+/** Основной CTA: брендовая обводка, одинаковый на hero / слайдере / карточках. */
+@utility btn-dealer-primary {
+  @apply font-display inline-flex min-h-11 items-center justify-center border border-gold/90 bg-gold/15 px-5 py-3 text-[12px] uppercase tracking-[0.14em] text-fog transition hover:bg-gold/25 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold sm:px-7 sm:py-3.5 sm:text-sm sm:tracking-[0.18em];
+}
+
+/** Компактная первичная кнопка (полосы карточек). */
+@utility btn-dealer-primary-sm {
+  @apply font-display inline-flex min-h-11 items-center gap-2 border border-gold/85 bg-gold/15 px-4 py-2.5 text-[10px] uppercase tracking-[0.14em] text-fog transition hover:bg-gold/30 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold sm:gap-2.5 sm:px-5 sm:text-[11px] sm:tracking-[0.18em];
+}
+
+/** Вторичное действие — текстовая ссылка рядом с основной кнопкой. */
+@utility link-dealer-secondary {
+  @apply font-display text-xs uppercase tracking-[0.14em] transition sm:text-sm sm:tracking-[0.22em];
+}
+
+/** Карточка / тайл: единая рамка и скругление. */
+@utility card-dealer {
+  @apply overflow-hidden rounded-2xl border border-line bg-graphite/50;
+}
+
+.font-display {
+  font-family: var(--font-display);
+  /* Ближе к плотности Bebas на крупных заголовках */
+  font-weight: 500;
+  font-synthesis: none;
+}
+
+/* Marquee.jsx: бесшовный цикл без GSAP (корректно при любой ширине кириллицы) */
+@keyframes marquee-css-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-css-track {
+  animation: marquee-css-scroll 48s linear infinite;
+  will-change: transform;
+}
+
+.marquee-css-track:hover {
+  animation-play-state: paused;
+}
+
+.marquee-css-track--reverse {
+  animation-direction: reverse;
+}
+
+/* Lightweight model slider transition to avoid GSAP jank on slide switch. */
+@keyframes carSlideFade {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 10px, 0) scale(0.992);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+/* Models gallery: continuous horizontal reel like swiper/free-mode. */
+.models-gallery-mask {
+  position: relative;
+  overflow: hidden;
+  padding: 2px 0;
+}
+
+.models-gallery-stack {
+  display: grid;
+  gap: 14px;
+}
+
+.models-gallery-track {
+  display: flex;
+  width: max-content;
+  gap: 14px;
+  animation: marquee-css-scroll 28s linear infinite;
+  will-change: transform;
+}
+
+.models-gallery-track--left {
+  animation-direction: normal;
+}
+
+.models-gallery-track--right {
+  animation-direction: reverse;
+}
+
+.models-gallery-mask:hover .models-gallery-track {
+  animation-play-state: paused;
+}
+
+.models-gallery-slide {
+  width: 300px;
+  min-width: 300px;
+  border-radius: 12px;
+}
+
+@media (min-width: 640px) {
+  .models-gallery-slide {
+    width: 340px;
+    min-width: 340px;
+  }
+}

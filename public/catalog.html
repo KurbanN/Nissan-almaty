@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Bioenergy Power — Precision Industries generator catalog. Diesel and portable models."
+    />
+    <title>Bioenergy Power | Products Catalog</title>
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem("bioen-theme");
+          if (t === "light") document.documentElement.dataset.theme = "light";
+        } catch (e) {}
+      })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root,
+      [data-theme="dark"] {
+        --app-ink: #0a0a0b;
+        --app-graphite: #141416;
+        --app-steel: #1e1e22;
+        --app-muted: #8a8a8f;
+        --app-fog: #c4c4c8;
+        --app-gold: #e60023;
+        --app-gold-dim: #b7001a;
+        --app-line: #2f2f34;
+        --app-line-strong: #3f3f45;
+        --app-code-bg: rgba(255, 255, 255, 0.06);
+      }
+      [data-theme="light"] {
+        --app-ink: #f4f5f8;
+        --app-graphite: #ffffff;
+        --app-steel: #eceef3;
+        --app-muted: #5c636a;
+        --app-fog: #14161c;
+        --app-gold: #e60023;
+        --app-gold-dim: #b7001a;
+        --app-line: #e2e5eb;
+        --app-line-strong: #d1d5dc;
+        --app-code-bg: rgba(15, 23, 42, 0.06);
+      }
+      body {
+        font-family: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+        background: var(--app-ink);
+        color: var(--app-fog);
+      }
+      .font-display {
+        font-family: "Bebas Neue", ui-sans-serif, system-ui, sans-serif;
+      }
+      .catalog-card {
+        transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+      }
+      .catalog-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.2);
+      }
+      [data-theme="dark"] .catalog-card:hover {
+        box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.65);
+      }
+      .chip-active {
+        border-color: rgba(230, 0, 35, 0.45) !important;
+        background: rgba(230, 0, 35, 0.12);
+        color: var(--app-fog);
+      }
+      .code-pill {
+        border-radius: 0.125rem;
+        padding: 0.125rem 0.375rem;
+        font-size: 0.75rem;
+        background: var(--app-code-bg);
+        color: var(--app-fog);
+      }
+    </style>
+    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              ink: "var(--app-ink)",
+              graphite: "var(--app-graphite)",
+              steel: "var(--app-steel)",
+              muted: "var(--app-muted)",
+              fog: "var(--app-fog)",
+              gold: "var(--app-gold)",
+              "gold-dim": "var(--app-gold-dim)",
+              line: "var(--app-line)",
+              "line-strong": "var(--app-line-strong)",
+            },
+            fontFamily: {
+              display: [
+                '"Bebas Neue"',
+                "ui-sans-serif",
+                "system-ui",
+                "sans-serif",
+              ],
+              body: ['"DM Sans"', "ui-sans-serif", "system-ui", "sans-serif"],
+            },
+            boxShadow: {
+              glow: "0 0 0 1px rgba(230, 0, 35, 0.15), 0 24px 48px -12px rgba(0, 0, 0, 0.55)",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="min-h-screen bg-ink font-body antialiased">
+    <!-- Theme toggle (same storage key as main SPA: bioen-theme) -->
+    <button
+      type="button"
+      id="catalog-theme-toggle"
+      class="font-display fixed bottom-6 right-6 z-[60] flex items-center gap-3 rounded-full border border-line-strong bg-graphite/90 px-4 py-2.5 text-[10px] uppercase tracking-[0.28em] text-fog shadow-lg backdrop-blur-md transition hover:border-gold/40 hover:bg-graphite sm:bottom-8 sm:right-8"
+      aria-pressed="false"
+      aria-label="Toggle light or dark theme"
+      title="Theme"
+    >
+      <span
+        id="theme-track"
+        class="relative inline-flex h-6 w-11 shrink-0 items-center rounded-full border border-line-strong transition-colors"
+      >
+        <span
+          class="absolute left-0.5 top-0.5 h-5 w-5 rounded-full bg-zinc-200 shadow transition-transform duration-300"
+          data-theme-knob
+        ></span>
+      </span>
+      <span class="theme-toggle-label hidden text-muted sm:inline">Dark</span>
+    </button>
+
+    <!-- Nav -->
+    <header
+      class="fixed top-0 z-50 w-full border-b border-line bg-ink"
+    >
+      <div
+        class="mx-auto flex max-w-7xl items-center justify-between gap-6 px-5 py-4 sm:px-8"
+      >
+        <a href="index.html" class="font-display shrink-0 text-xl tracking-[0.12em] text-fog sm:text-2xl">
+          Bioenergy Power
+        </a>
+        <nav
+          class="ml-auto hidden flex-wrap items-center justify-end gap-x-6 gap-y-2 md:flex lg:gap-x-8"
+          aria-label="Primary"
+        >
+          <a
+            class="font-display text-xs uppercase tracking-[0.2em] text-muted transition hover:text-gold"
+            href="index.html#home"
+            >Company</a
+          >
+          <a
+            class="font-display text-xs uppercase tracking-[0.2em] text-muted transition hover:text-gold"
+            href="index.html#about"
+            >About</a
+          >
+          <a
+            class="font-display text-xs uppercase tracking-[0.2em] text-muted transition hover:text-gold"
+            href="index.html#services"
+            >Services</a
+          >
+          <span
+            class="font-display border-b border-gold pb-0.5 text-xs uppercase tracking-[0.2em] text-gold"
+            aria-current="page"
+            >Catalog</span
+          >
+          <a
+            class="font-display text-xs uppercase tracking-[0.2em] text-muted transition hover:text-gold"
+            href="index.html#contact"
+            >Contact</a
+          >
+        </nav>
+      </div>
+    </header>
+
+    <!-- Back -->
+    <div
+      class="pointer-events-none fixed left-0 right-0 top-[4.25rem] z-40 mx-auto max-w-7xl px-5 sm:px-8"
+    >
+      <a
+        href="index.html"
+        class="pointer-events-auto inline-flex items-center gap-2 border border-line-strong bg-graphite/90 px-4 py-2 font-display text-[11px] uppercase tracking-[0.28em] text-muted shadow-lg backdrop-blur-md transition hover:border-gold/35 hover:text-fog"
+      >
+        ← Main site
+      </a>
+    </div>
+
+    <main class="mx-auto max-w-7xl px-5 pb-20 pt-28 sm:px-8 sm:pt-32">
+      <header class="border-b border-line pb-12 pt-4">
+        <div class="grid grid-cols-1 items-end gap-10 lg:grid-cols-12 lg:gap-12">
+          <div class="lg:col-span-7">
+            <p class="font-display text-[11px] uppercase tracking-[0.4em] text-gold-dim">
+              Products list
+            </p>
+            <h1
+              class="font-display mt-4 text-5xl uppercase leading-[0.95] tracking-[0.04em] text-fog sm:text-6xl md:text-7xl"
+            >
+              Precision
+              <span
+                class="block bg-gradient-to-r from-gold via-fog to-gold/80 bg-clip-text text-transparent"
+                >Generator Systems</span
+              >
+            </h1>
+          </div>
+          <div class="lg:col-span-5">
+            <p class="text-base leading-relaxed text-muted sm:text-lg">
+              Official Precision Industries models catalog. Browse diesel and portable
+              generator lines. Images are placeholders until your assets are in
+              <code class="code-pill">/public/bioen/assets/img/</code>.
+            </p>
+          </div>
+        </div>
+      </header>
+
+      <section
+        class="relative z-0 mt-10 border border-line bg-graphite/90 py-4 backdrop-blur-md sm:rounded-sm sm:px-5 sm:py-5"
+      >
+        <div
+          class="flex flex-col gap-4 px-4 sm:flex-row sm:items-center sm:justify-between sm:px-0"
+        >
+          <div class="flex flex-wrap items-center gap-2">
+            <button
+              type="button"
+              class="category-chip chip-active font-display rounded-sm border border-line-strong px-4 py-2 text-[11px] uppercase tracking-[0.22em] text-fog transition"
+              data-category="all"
+            >
+              All
+            </button>
+            <button
+              type="button"
+              class="category-chip font-display rounded-sm border border-line px-4 py-2 text-[11px] uppercase tracking-[0.22em] text-muted transition hover:border-line-strong hover:text-fog"
+              data-category="diesel"
+            >
+              Diesel Generators
+            </button>
+            <button
+              type="button"
+              class="category-chip font-display rounded-sm border border-line px-4 py-2 text-[11px] uppercase tracking-[0.22em] text-muted transition hover:border-line-strong hover:text-fog"
+              data-category="portable"
+            >
+              Portable Generators
+            </button>
+          </div>
+          <label
+            class="flex items-center gap-3 border border-line bg-ink/60 px-3 py-2 sm:min-w-[240px]"
+          >
+            <span class="text-xs uppercase tracking-[0.2em] text-muted">Search</span>
+            <input
+              id="catalog-search"
+              type="search"
+              placeholder="Model name…"
+              class="w-full border-0 bg-transparent text-sm text-fog placeholder:text-muted/70 focus:ring-0"
+            />
+          </label>
+        </div>
+      </section>
+
+      <section class="mt-12">
+        <div class="mb-6 flex flex-wrap items-end justify-between gap-4">
+          <h2 class="font-display text-3xl uppercase tracking-[0.14em] text-fog sm:text-4xl">
+            Catalog Models
+          </h2>
+          <a
+            class="font-display text-[11px] uppercase tracking-[0.28em] text-gold transition hover:opacity-80"
+            href="product_details.html"
+            >Product details →</a
+          >
+        </div>
+        <div
+          id="catalog-grid"
+          class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6"
+        ></div>
+      </section>
+    </main>
+
+    <footer class="border-t border-line bg-ink">
+      <div class="mx-auto max-w-7xl px-5 py-10 text-center sm:px-8">
+        <p class="text-sm text-muted">
+          Official Precision Industries distributor in Kazakhstan.<br />
+          Almaty, Suyunbaya 89a ·
+          <a class="text-fog underline-offset-4 hover:underline" href="mailto:info@bioen.kz"
+            >info@bioen.kz</a
+          >
+        </p>
+        <p class="mt-4 text-xs text-muted/80">
+          powered by
+          <a
+            class="font-medium text-fog transition hover:text-gold"
+            href="https://infinitydev.kz"
+            target="_blank"
+            rel="noopener noreferrer"
+            >infinitydev.kz</a
+          >
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      (function () {
+        var KEY = "bioen-theme";
+        var btn = document.getElementById("catalog-theme-toggle");
+        var knob = document.querySelector("[data-theme-knob]");
+        var label = document.querySelector(".theme-toggle-label");
+
+        function isLight() {
+          return document.documentElement.dataset.theme === "light";
+        }
+
+        function applyTheme(light) {
+          if (light) document.documentElement.dataset.theme = "light";
+          else document.documentElement.removeAttribute("data-theme");
+          try {
+            localStorage.setItem(KEY, light ? "light" : "dark");
+          } catch (e) {}
+          syncUi();
+        }
+
+        function syncUi() {
+          var light = isLight();
+          var track = document.getElementById("theme-track");
+          if (btn) btn.setAttribute("aria-pressed", light ? "true" : "false");
+          if (track) {
+            track.style.backgroundColor = light
+              ? "rgba(230, 0, 35, 0.22)"
+              : "rgba(0, 0, 0, 0.45)";
+          }
+          if (knob) {
+            knob.style.transform = light ? "translateX(1.25rem)" : "translateX(0)";
+            knob.style.backgroundColor = light ? "#ffffff" : "#e4e4e7";
+          }
+          if (label) label.textContent = light ? "Light" : "Dark";
+        }
+
+        if (btn) {
+          btn.addEventListener("click", function () {
+            applyTheme(!isLight());
+          });
+        }
+        syncUi();
+      })();
+
+      const FALLBACK_IMG =
+        "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=800&q=80";
+
+      const imagePool = [
+        "bioen/assets/img/product.jpg",
+        "bioen/assets/img/20a.png",
+        "bioen/assets/img/work1.jpg",
+        "bioen/assets/img/work1.png",
+        "bioen/assets/img/work2.png",
+        "bioen/assets/img/work3.jpg",
+        "bioen/assets/img/work4.png",
+        "bioen/assets/img/work5.jpg",
+        "bioen/assets/img/work6.jpg",
+      ];
+
+      const catalogItems = [
+        { category: "diesel", model: "Alimar 17,5" },
+        { category: "diesel", model: "Alimar 22" },
+        { category: "diesel", model: "Alimar 28" },
+        { category: "diesel", model: "Alimar 33" },
+        { category: "diesel", model: "Alimar 40" },
+        { category: "diesel", model: "Alimar 45" },
+        { category: "diesel", model: "Alimar 50" },
+        { category: "diesel", model: "Alimar 62" },
+        { category: "diesel", model: "Alimar 75" },
+        { category: "diesel", model: "Alimar 82" },
+        { category: "diesel", model: "Alimar 110" },
+        { category: "diesel", model: "Alimar 125" },
+        { category: "diesel", model: "Alimar 220" },
+        { category: "diesel", model: "Alimar 275" },
+        { category: "diesel", model: "Alimar 300" },
+        { category: "portable", model: "MGW 200B" },
+        { category: "portable", model: "MGC 1101" },
+        { category: "portable", model: "ALM/D-1350ME" },
+        { category: "portable", model: "ALM 2200M" },
+        { category: "portable", model: "MGE 1801" },
+        { category: "portable", model: "ALM/B-2500" },
+        { category: "portable", model: "MGE 2901" },
+        { category: "portable", model: "ALM 3000M" },
+        { category: "portable", model: "ALM/B-3000" },
+        { category: "portable", model: "ALM/B-3500" },
+        { category: "portable", model: "ALM/D-3600" },
+        { category: "portable", model: "MGE 4800" },
+        { category: "portable", model: "ALM/DS-5000E" },
+        { category: "portable", model: "ALM/D-5000" },
+      ];
+
+      const grid = document.getElementById("catalog-grid");
+      const searchInput = document.getElementById("catalog-search");
+      const chips = document.querySelectorAll(".category-chip");
+      let activeCategory = "all";
+
+      function renderCatalog() {
+        const query = (searchInput.value || "").trim().toLowerCase();
+        const filtered = catalogItems.filter((item) => {
+          const categoryOk = activeCategory === "all" || item.category === activeCategory;
+          const searchOk = !query || item.model.toLowerCase().includes(query);
+          return categoryOk && searchOk;
+        });
+
+        grid.innerHTML = filtered
+          .map((item, idx) => {
+            const src = imagePool[idx % imagePool.length];
+            const badge =
+              item.category === "diesel" ? "Diesel Generator" : "Portable Generator";
+            return `
+        <article class="catalog-card group cursor-pointer overflow-hidden border border-line bg-graphite/80" data-model="${item.model}">
+          <div class="relative aspect-[4/3] overflow-hidden bg-steel">
+            <img class="h-full w-full object-cover opacity-95 transition duration-700 group-hover:scale-105" src="${src}" alt="${item.model}" onerror="this.onerror=null;this.src='${FALLBACK_IMG}'"/>
+            <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent"></div>
+          </div>
+          <div class="border-t border-line p-5">
+            <p class="font-display text-[10px] uppercase tracking-[0.35em] text-muted">${badge}</p>
+            <h3 class="font-display mt-2 text-2xl uppercase tracking-[0.08em] text-fog">${item.model}</h3>
+            <p class="mt-3 text-xs text-muted/90">Precision Industries · PI distributor</p>
+          </div>
+        </article>`;
+          })
+          .join("");
+
+        grid.querySelectorAll(".catalog-card").forEach((card) => {
+          card.addEventListener("click", () => {
+            const modelEl = card.querySelector("h3");
+            const model = modelEl ? modelEl.textContent.trim() : "";
+            const nextUrl = model
+              ? `product_details.html?model=${encodeURIComponent(model)}`
+              : "product_details.html";
+            window.location.href = nextUrl;
+          });
+        });
+      }
+
+      chips.forEach((chip) => {
+        chip.addEventListener("click", () => {
+          chips.forEach((c) => {
+            c.classList.remove("chip-active");
+            c.classList.remove("text-fog");
+            c.classList.add("text-muted");
+          });
+          chip.classList.add("chip-active");
+          chip.classList.remove("text-muted");
+          chip.classList.add("text-fog");
+          activeCategory = chip.dataset.category;
+          renderCatalog();
+        });
+      });
+
+      searchInput.addEventListener("input", renderCatalog);
+      renderCatalog();
+    </script>
+  </body>
+</html>
