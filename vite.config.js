@@ -9,9 +9,20 @@ import tailwindcss from "@tailwindcss/vite";
  * Локально без env — обычный base /.
  */
 const htmlBase = process.env.VITE_HTML_BASE?.trim();
+const isGithubActions = process.env.GITHUB_ACTIONS === "true";
+const githubRepository = process.env.GITHUB_REPOSITORY?.trim(); // owner/repo
+
+function resolveGithubBase() {
+  if (!isGithubActions || !githubRepository) return "/";
+  const [, repo] = githubRepository.split("/");
+  if (!repo || repo.endsWith(".github.io")) return "/";
+  return `/${repo}/`;
+}
+
+const resolvedBase = htmlBase ? "./" : resolveGithubBase();
 
 export default defineConfig({
-  base: htmlBase ? "./" : "/",
+  base: resolvedBase,
   plugins: [
     tailwindcss(),
     react(),
