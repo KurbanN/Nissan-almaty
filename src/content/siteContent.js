@@ -66,15 +66,15 @@ const partnersData = [
 const galleryBase = [
   {
     id: "patrol-1",
-    src: assetUrl("cars/hf_20260423_082503_512d042b-3206-484b-8b26-be12623d29b2.png"),
+    src: assetUrl("cars/optimized/patrol-1024.webp"),
   },
   {
     id: "qashqai-1",
-    src: assetUrl("cars/hf_20260423_083635_a181ade0-2d4c-4425-8b66-8c6b8cb9ea68.png"),
+    src: assetUrl("cars/optimized/qashqai-1024.webp"),
   },
   {
     id: "xtrail-1",
-    src: assetUrl("cars/hf_20260423_103051_ed0e32b0-a3c1-408e-9b31-cd31f43326f0.png"),
+    src: assetUrl("cars/optimized/xtrail-1024.webp"),
   },
 ];
 

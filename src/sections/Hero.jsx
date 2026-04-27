@@ -3,8 +3,6 @@ import gsap from "gsap";
 import { useEffect, useRef, useState } from "react";
 import { useSiteContent } from "../context/LocaleContext";
 import { assetUrl } from "../utils/assetUrl";
-import qashqaiLanding from "../../cars/Qashqai/qashqai.png";
-import xtrailLanding from "../../cars/x-trail/x-trail.png";
 
 const heroSlides = [
   {
@@ -14,16 +12,16 @@ const heroSlides = [
     model: "PATROL",
   },
   {
-    key: null,
-    src: qashqaiLanding,
-    mobileKey: null,
+    key: "qashqai",
+    src: assetUrl("cars/qashqai-new.png"),
+    mobileKey: "mob-2",
     model: "QASHQAI",
     mobileObjectPositionClass: "object-[68%_42%] lg:object-center",
   },
   {
-    key: null,
-    src: xtrailLanding,
-    mobileKey: null,
+    key: "xtrail",
+    src: assetUrl("cars/xtrail-new.png"),
+    mobileKey: "mob-3",
     model: "X-TRAIL",
     mobileObjectPositionClass: "object-[70%_42%] lg:object-center",
   },

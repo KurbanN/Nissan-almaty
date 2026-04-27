@@ -3,8 +3,6 @@ import gsap from "gsap";
 import { useEffect, useRef, useState } from "react";
 import { useSiteContent } from "../context/LocaleContext";
 import { assetUrl } from "../utils/assetUrl";
-import qashqaiLanding from "../../cars/Qashqai/qashqai.png";
-import xtrailLanding from "../../cars/x-trail/x-trail.png";
 
 const cars = [
   {
@@ -30,8 +28,8 @@ const cars = [
     offerSuffix: "",
     offerFootnote: "Финансирование до 60 месяцев",
     description: "Городской кроссовер с экономичным расходом и современным оснащением.",
-    image: qashqaiLanding,
-    optimizedKey: null,
+    image: assetUrl("cars/qashqai-new.png"),
+    optimizedKey: "qashqai",
     imagePosition: "center 70%",
     thumbImagePosition: "67% 70%",
   },
@@ -44,8 +42,8 @@ const cars = [
     offerSuffix: "₸",
     offerFootnote: "Выгода по trade-in",
     description: "Практичный SUV для семьи и путешествий, с полным пакетом поддержки.",
-    image: xtrailLanding,
-    optimizedKey: null,
+    image: assetUrl("cars/xtrail-new.png"),
+    optimizedKey: "xtrail",
     imagePosition: "center 90%",
     thumbImagePosition: "32% 90%",
   },

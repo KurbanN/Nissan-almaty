@@ -1,7 +1,10 @@
 import { useState } from "react";
-import serviceOnline from "../../cars/service/online.png";
-import serviceFactory from "../../cars/service/factory.png";
-import serviceFinance from "../../cars/service/finance.jpg";
+import { assetUrl } from "../utils/assetUrl";
+
+const responsiveSet = (key) =>
+  [480, 768, 1024, 1440]
+    .map((w) => `${assetUrl(`cars/optimized/${key}-${w}.webp`)} ${w}w`)
+    .join(", ");
 
 const cards = [
   {
@@ -9,14 +12,16 @@ const cards = [
     title: "Онлайн покупка",
     description:
       "Покупка автомобиля онлайн — быстро, удобно, без визита в дилерский центр.",
-    image: serviceOnline,
+    image: assetUrl("cars/optimized/online-1440.webp"),
+    optimizedKey: "online",
     href: "#contact",
   },
   {
     id: "about",
     title: "О компании",
     description: "Мы задаем новый ритм автоиндустрии Казахстана.",
-    image: serviceFactory,
+    image: assetUrl("cars/optimized/factory-1440.webp"),
+    optimizedKey: "factory",
     href: "#about",
   },
   {
@@ -24,7 +29,8 @@ const cards = [
     title: "Финансовые программы",
     description:
       "Оформление кредита на автомобиль с гибкими сроками и удобными платежами.",
-    image: serviceFinance,
+    image: assetUrl("cars/optimized/finance-1440.webp"),
+    optimizedKey: "finance",
     href: "#contact",
   },
 ];
@@ -70,12 +76,22 @@ const FeatureCardsStrip = () => {
                   onMouseEnter={() => setActiveId(card.id)}
                   onFocusCapture={() => setActiveId(card.id)}
                 >
-                  <img
-                    src={card.image}
-                    alt=""
-                    className="absolute inset-0 h-full w-full object-cover transition duration-[1200ms] ease-out group-hover:scale-[1.04]"
-                    loading="lazy"
-                  />
+                  <picture>
+                    {card.optimizedKey ? (
+                      <source
+                        type="image/webp"
+                        srcSet={responsiveSet(card.optimizedKey)}
+                        sizes="(min-width: 1024px) 33vw, 100vw"
+                      />
+                    ) : null}
+                    <img
+                      src={card.image}
+                      alt=""
+                      className="absolute inset-0 h-full w-full object-cover transition duration-[1200ms] ease-out group-hover:scale-[1.04]"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </picture>
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-black/10" />
 
                   <div className="relative z-10 flex h-full min-h-[280px] flex-col p-4 sm:min-h-[320px] sm:p-6 md:min-h-0">
