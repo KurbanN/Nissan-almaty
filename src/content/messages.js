@@ -7,7 +7,7 @@ export const messages = {
     meta: {
       title: "NISSAN Almaty | Official Dealer",
       description:
-        "Official Nissan dealer in Almaty. Patrol, Sentra, Qashqai and X-Trail, test drive, financing and trade-in.",
+        "Official Nissan dealer in Almaty. Patrol, Qashqai and X-Trail, test drive, financing and trade-in.",
     },
     nav: {
       links: [
@@ -298,7 +298,6 @@ All necessary maintenances are planned through the contract — due type and pre
     statementWords: [
       "Nissan",
       "Patrol",
-      "Sentra",
       "Qashqai",
       "Trade-In",
       "Кредит",
@@ -430,7 +429,6 @@ All necessary maintenances are planned through the contract — due type and pre
     },
     galleryCaptions: [
       "Nissan Patrol",
-      "Nissan Sentra",
       "Nissan Qashqai",
       "Интерьер",
       "Тест-драйв",
@@ -452,7 +450,6 @@ All necessary maintenances are planned through the contract — due type and pre
       creditLabel: "",
       resources: [
         { label: "Nissan Patrol", href: "#models" },
-        { label: "Nissan Sentra", href: "#models" },
         { label: "Nissan Qashqai", href: "#models" },
         { label: "Записаться на тест-драйв", href: "#contact" },
       ],
@@ -468,7 +465,7 @@ All necessary maintenances are planned through the contract — due type and pre
     meta: {
       title: "NISSAN Almaty | Ресми дилер",
       description:
-        "Алматыдағы Nissan ресми дилері. Patrol, Sentra, Qashqai және X-Trail, тест-драйв, несие және trade-in.",
+        "Алматыдағы Nissan ресми дилері. Patrol, Qashqai және X-Trail, тест-драйв, несие және trade-in.",
     },
     nav: {
       links: [

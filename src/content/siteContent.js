@@ -69,24 +69,12 @@ const galleryBase = [
     src: assetUrl("cars/hf_20260423_082503_512d042b-3206-484b-8b26-be12623d29b2.png"),
   },
   {
-    id: "sentra-1",
-    src: assetUrl("cars/sentra-3.png"),
-  },
-  {
     id: "qashqai-1",
     src: assetUrl("cars/hf_20260423_083635_a181ade0-2d4c-4425-8b66-8c6b8cb9ea68.png"),
   },
   {
-    id: "sentra-2",
-    src: assetUrl("cars/sentra-4.png"),
-  },
-  {
     id: "xtrail-1",
     src: assetUrl("cars/hf_20260423_103051_ed0e32b0-a3c1-408e-9b31-cd31f43326f0.png"),
-  },
-  {
-    id: "sentra-3",
-    src: assetUrl("cars/sentra-5.png"),
   },
 ];
 

@@ -3,7 +3,7 @@ import { useSiteContent } from "../context/LocaleContext";
 
 const cityOptions = ["Алматы", "Астана", "Шымкент"];
 const brandOptions = ["Nissan"];
-const modelOptions = ["Patrol", "Sentra", "Qashqai", "X-Trail"];
+const modelOptions = ["Patrol", "Qashqai", "X-Trail"];
 const dealerOptions = ["Nissan Almaty"];
 
 const ContactOverlay = () => {

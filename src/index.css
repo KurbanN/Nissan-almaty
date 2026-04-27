@@ -56,7 +56,6 @@
 body {
   background: var(--app-ink);
   color: var(--app-fog);
-  scroll-behavior: smooth;
   overflow-x: hidden;
   font-family: var(--font-body);
   font-weight: 400;

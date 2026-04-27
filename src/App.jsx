@@ -16,7 +16,18 @@ import SiteFooter from "./sections/SiteFooter";
 
 const App = () => {
   return (
-    <ReactLenis root className="relative min-h-screen w-full overflow-x-hidden bg-ink">
+    <ReactLenis
+      root
+      options={{
+        lerp: 0.08,
+        duration: 1.15,
+        smoothWheel: true,
+        wheelMultiplier: 0.9,
+        syncTouch: true,
+        touchMultiplier: 1,
+      }}
+      className="relative min-h-screen w-full overflow-x-hidden bg-ink"
+    >
       <ThemeToggle />
       <ContactOverlay />
       <DealerStickyBar />

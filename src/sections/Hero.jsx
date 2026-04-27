@@ -14,12 +14,6 @@ const heroSlides = [
     model: "PATROL",
   },
   {
-    key: "sentra-hero",
-    src: assetUrl("cars/sentra-2.png"),
-    mobileKey: "mob-2",
-    model: "SENTRA",
-  },
-  {
     key: null,
     src: qashqaiLanding,
     mobileKey: null,
