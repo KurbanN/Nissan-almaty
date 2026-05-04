@@ -103,9 +103,6 @@ const Navbar = () => {
   };
 
   const burgerVisible = showBurger || isOpen;
-  const openContactOverlay = () => {
-    window.dispatchEvent(new Event("open-contact-overlay"));
-  };
 
   return (
     <>
@@ -144,13 +141,6 @@ const Navbar = () => {
 
           <div className="flex items-center gap-5">
             <LanguageSwitcher className="!bg-transparent !text-[9px]" />
-            <button
-              type="button"
-              onClick={openContactOverlay}
-              className="btn-dealer-primary cursor-pointer !px-5 !py-2 !text-[10px] !tracking-[0.2em] text-white"
-            >
-              {ui.contactUs}
-            </button>
           </div>
         </div>
       </header>

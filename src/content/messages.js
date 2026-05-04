@@ -2,12 +2,21 @@
  * Локализованные строки: en (исходный), ru, kk (казахский, кириллица).
  */
 
+/** Подписи к 18 кадрам Patrol / Qashqai по очереди. */
+function galleryCaptionsPatrolQashqai(patrol, qashqai) {
+  const out = [];
+  for (let i = 0; i < 9; i += 1) {
+    out.push(patrol, qashqai);
+  }
+  return out;
+}
+
 export const messages = {
   en: {
     meta: {
       title: "NISSAN Almaty | Official Dealer",
       description:
-        "Official Nissan dealer in Almaty. Patrol, Qashqai and X-Trail, test drive, financing and trade-in.",
+        "Official Nissan dealer in Almaty. Nissan Patrol and Qashqai, test drive, financing and trade-in.",
     },
     nav: {
       links: [
@@ -52,6 +61,8 @@ export const messages = {
       stickyCatalogShort: "Stock",
       stickyBarAria: "Quick contact and catalog",
       hoursLabel: "Hours",
+      bannerPrevAria: "Previous banner",
+      bannerNextAria: "Next banner",
     },
     brand: {
       tagline: "Power Generation",
@@ -198,14 +209,7 @@ All necessary maintenances are planned through the contract — due type and pre
       title: "Our Clients",
       headerText: `Our clients & delivered projects.\nIndustrial backup power in the field.`,
     },
-    galleryCaptions: [
-      "Client project",
-      "Client project",
-      "Client project",
-      "Client project",
-      "Client project",
-      "Client project",
-    ],
+    galleryCaptions: galleryCaptionsPatrolQashqai("Nissan Patrol", "Nissan Qashqai"),
     quote: {
       text: "We don’t stop at the sale — we engineer confidence that stays online when it matters most.",
       attribution: "— Bioenergy Power",
@@ -282,6 +286,8 @@ All necessary maintenances are planned through the contract — due type and pre
       stickyCatalogShort: "Авто в наличии",
       stickyBarAria: "Быстрая связь и каталог",
       hoursLabel: "Режим работы",
+      bannerPrevAria: "Предыдущий баннер",
+      bannerNextAria: "Следующий баннер",
     },
     brand: {
       tagline: "Официальный дилер",
@@ -427,14 +433,7 @@ All necessary maintenances are planned through the contract — due type and pre
       title: "Галерея моделей",
       headerText: `Дизайн, салон и характер.\nКлючевые моменты в деталях.`,
     },
-    galleryCaptions: [
-      "Nissan Patrol",
-      "Nissan Qashqai",
-      "Интерьер",
-      "Тест-драйв",
-      "Экстерьер",
-      "Дилерский центр",
-    ],
+    galleryCaptions: galleryCaptionsPatrolQashqai("Nissan Patrol", "Nissan Qashqai"),
     quote: {
       text: "Доставка авто за наш счёт во все регионы Казахстана. Выгода по Trade-in до 5 000 000 ₸.",
       attribution: "— NISSAN ALMATY",
@@ -465,7 +464,7 @@ All necessary maintenances are planned through the contract — due type and pre
     meta: {
       title: "NISSAN Almaty | Ресми дилер",
       description:
-        "Алматыдағы Nissan ресми дилері. Patrol, Qashqai және X-Trail, тест-драйв, несие және trade-in.",
+        "Алматыдағы Nissan ресми дилері. Nissan Patrol және Qashqai, тест-драйв, несие және trade-in.",
     },
     nav: {
       links: [
@@ -510,6 +509,8 @@ All necessary maintenances are planned through the contract — due type and pre
       stickyCatalogShort: "Каталог",
       stickyBarAria: "Жылдам байланыс",
       hoursLabel: "Жұмыс уақыты",
+      bannerPrevAria: "Алдыңғы баннер",
+      bannerNextAria: "Келесі баннер",
     },
     brand: {
       tagline: "Power Generation",
@@ -656,14 +657,7 @@ All necessary maintenances are planned through the contract — due type and pre
       title: "Біздің клиенттер",
       headerText: `Клиенттер мен орындалған жобалар.\nӨнеркәсіптік резервтік энергия өрісте.`,
     },
-    galleryCaptions: [
-      "Клиент жобасы",
-      "Клиент жобасы",
-      "Клиент жобасы",
-      "Клиент жобасы",
-      "Клиент жобасы",
-      "Клиент жобасы",
-    ],
+    galleryCaptions: galleryCaptionsPatrolQashqai("Nissan Patrol", "Nissan Qashqai"),
     quote: {
       text: "Біз сатумен тоқтамаймыз — ең маңызды сәтте сізбен бірге болатын сенімді жасаймыз.",
       attribution: "— Bioenergy Power",

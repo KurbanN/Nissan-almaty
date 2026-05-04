@@ -63,20 +63,24 @@ const partnersData = [
   },
 ];
 
-const galleryBase = [
-  {
-    id: "patrol-1",
-    src: assetUrl("cars/optimized/patrol-1024.webp"),
-  },
-  {
-    id: "qashqai-1",
-    src: assetUrl("cars/optimized/qashqai-1024.webp"),
-  },
-  {
-    id: "xtrail-1",
-    src: assetUrl("cars/optimized/xtrail-1024.webp"),
-  },
-];
+/** 9 ракурсов Patrol и 9 Qashqai (чередование в ленте). */
+function buildGalleryBase() {
+  const items = [];
+  for (let i = 1; i <= 9; i += 1) {
+    const n = String(i).padStart(2, "0");
+    items.push({
+      id: `gallery-patrol-${n}`,
+      src: assetUrl(`cars/optimized/gallery-patrol-${n}-1024.webp`),
+    });
+    items.push({
+      id: `gallery-qashqai-${n}`,
+      src: assetUrl(`cars/optimized/gallery-qashqai-${n}-1024.webp`),
+    });
+  }
+  return items;
+}
+
+const galleryBase = buildGalleryBase();
 
 const SERVICE_HREF = "#contact";
 

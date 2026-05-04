@@ -8,15 +8,6 @@ const responsiveSet = (key) =>
 
 const cards = [
   {
-    id: "online",
-    title: "Онлайн покупка",
-    description:
-      "Покупка автомобиля онлайн — быстро, удобно, без визита в дилерский центр.",
-    image: assetUrl("cars/optimized/online-1440.webp"),
-    optimizedKey: "online",
-    href: "#contact",
-  },
-  {
     id: "about",
     title: "О компании",
     description: "Мы задаем новый ритм автоиндустрии Казахстана.",
@@ -81,7 +72,7 @@ const FeatureCardsStrip = () => {
                       <source
                         type="image/webp"
                         srcSet={responsiveSet(card.optimizedKey)}
-                        sizes="(min-width: 1024px) 33vw, 100vw"
+                        sizes="(min-width: 1024px) 50vw, 100vw"
                       />
                     ) : null}
                     <img

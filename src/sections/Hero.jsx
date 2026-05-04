@@ -1,29 +1,24 @@
+import { Icon } from "@iconify/react/dist/iconify.js";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useSiteContent } from "../context/LocaleContext";
 import { assetUrl } from "../utils/assetUrl";
 
 const heroSlides = [
   {
     key: "patrol",
-    src: assetUrl("cars/hf_20260423_083635_a181ade0-2d4c-4425-8b66-8c6b8cb9ea68.png"),
+    src: assetUrl("cars/hero-landing-patrol.png"),
     mobileKey: "mob-1",
     model: "PATROL",
   },
   {
-    key: "qashqai",
-    src: assetUrl("cars/qashqai-new.png"),
-    mobileKey: "mob-2",
+    /** Отдельный префикс оптимизации — иначе браузер держит кэш старых `qashqai-*.webp`. */
+    key: "hero-qashqai",
+    src: assetUrl("cars/hero-landing-qashqai.png"),
+    mobileKey: "hero-qashqai",
     model: "QASHQAI",
     mobileObjectPositionClass: "object-[68%_42%] lg:object-center",
-  },
-  {
-    key: "xtrail",
-    src: assetUrl("cars/xtrail-new.png"),
-    mobileKey: "mob-3",
-    model: "X-TRAIL",
-    mobileObjectPositionClass: "object-[70%_42%] lg:object-center",
   },
 ];
 
@@ -42,35 +37,54 @@ const Hero = () => {
   const descRef = useRef(null);
   const ctaRef = useRef(null);
   const [activePhotoIndex, setActivePhotoIndex] = useState(0);
+  const [autoplayCycle, setAutoplayCycle] = useState(0);
   const activeSlide = heroSlides[activePhotoIndex];
+  const slideCount = heroSlides.length;
+
+  const goPrev = useCallback(() => {
+    setActivePhotoIndex((i) => (i - 1 + slideCount) % slideCount);
+    setAutoplayCycle((c) => c + 1);
+  }, [slideCount]);
+
+  const goNext = useCallback(() => {
+    setActivePhotoIndex((i) => (i + 1) % slideCount);
+    setAutoplayCycle((c) => c + 1);
+  }, [slideCount]);
+
+  const openContactOverlay = useCallback(() => {
+    window.dispatchEvent(new Event("open-contact-overlay"));
+  }, []);
 
   useGSAP(() => {
     const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
-    tl.from(eyebrowRef.current, { y: 20, opacity: 0, duration: 0.65 }, 0);
-    tl.from(badgeRef.current, { y: 16, opacity: 0, duration: 0.55 }, 0.08);
-    tl.from(line1Ref.current, { y: 48, opacity: 0, duration: 0.85 }, 0.12);
-    tl.from(line2Ref.current, { y: 48, opacity: 0, duration: 0.85 }, 0.2);
-    tl.from(descRef.current, { y: 24, opacity: 0, duration: 0.75 }, 0.35);
-    tl.from(
-      ctaRef.current?.children || [],
-      { y: 20, opacity: 0, duration: 0.6, stagger: 0.08 },
-      0.45
-    );
+    if (eyebrowRef.current) tl.from(eyebrowRef.current, { y: 20, opacity: 0, duration: 0.65 }, 0);
+    if (badgeRef.current) tl.from(badgeRef.current, { y: 16, opacity: 0, duration: 0.55 }, 0.08);
+    if (line1Ref.current) tl.from(line1Ref.current, { y: 48, opacity: 0, duration: 0.85 }, 0.12);
+    if (line2Ref.current) tl.from(line2Ref.current, { y: 48, opacity: 0, duration: 0.85 }, 0.2);
+    if (descRef.current) tl.from(descRef.current, { y: 24, opacity: 0, duration: 0.75 }, 0.35);
+    const ctaEls = ctaRef.current?.children;
+    if (ctaEls?.length) {
+      tl.from(
+        ctaEls,
+        { y: 16, opacity: 0, duration: 0.55, stagger: 0.07, clearProps: "transform,opacity" },
+        descRef.current ? 0.45 : 0.32
+      );
+    }
   }, []);
 
   useEffect(() => {
     const intervalId = window.setInterval(() => {
-      setActivePhotoIndex((previous) => (previous + 1) % heroSlides.length);
+      setActivePhotoIndex((previous) => (previous + 1) % slideCount);
     }, 7000);
 
     return () => window.clearInterval(intervalId);
-  }, []);
+  }, [autoplayCycle, slideCount]);
 
   return (
     <section
       id="home"
       ref={rootRef}
-      className="relative flex min-h-screen flex-col justify-end overflow-hidden bg-ink"
+      className="relative flex min-h-screen flex-col justify-end overflow-x-hidden bg-ink"
     >
       <div className="absolute inset-0 z-0">
         {heroSlides.map((slide, index) => (
@@ -112,7 +126,32 @@ const Hero = () => {
         ))}
       </div>
 
-      <div className="section-gutter relative z-10 grid min-h-screen flex-1 grid-cols-1 items-end gap-10 pb-14 pt-24 max-lg:pb-12 lg:pb-28 lg:pt-36">
+      {slideCount > 1 ? (
+        <>
+          <div className="pointer-events-none absolute inset-y-0 left-0 z-[15] flex w-14 items-center justify-start sm:w-16 lg:w-20">
+            <button
+              type="button"
+              onClick={goPrev}
+              aria-label={ui.bannerPrevAria}
+              className="pointer-events-auto ml-1 flex h-11 w-11 items-center justify-center rounded-full border border-white/25 bg-black/40 text-white backdrop-blur-sm transition hover:border-white/45 hover:bg-black/55 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold sm:h-12 sm:w-12"
+            >
+              <Icon icon="mdi:chevron-left" className="h-8 w-8 -translate-x-px" aria-hidden />
+            </button>
+          </div>
+          <div className="pointer-events-none absolute inset-y-0 right-0 z-[15] flex w-14 items-center justify-end sm:w-16 lg:w-20">
+            <button
+              type="button"
+              onClick={goNext}
+              aria-label={ui.bannerNextAria}
+              className="pointer-events-auto mr-1 flex h-11 w-11 items-center justify-center rounded-full border border-white/25 bg-black/40 text-white backdrop-blur-sm transition hover:border-white/45 hover:bg-black/55 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold sm:h-12 sm:w-12"
+            >
+              <Icon icon="mdi:chevron-right" className="h-8 w-8 translate-x-px" aria-hidden />
+            </button>
+          </div>
+        </>
+      ) : null}
+
+      <div className="section-gutter relative z-10 grid min-h-screen flex-1 grid-cols-1 items-end gap-10 pb-28 pt-24 max-lg:pb-[calc(7rem+env(safe-area-inset-bottom,0px))] lg:pb-28 lg:pt-36">
         <div className="max-w-4xl">
           {heroContent.eyebrow ? (
             <p
@@ -162,9 +201,19 @@ const Hero = () => {
 
           <div
             ref={ctaRef}
-            className="mt-10 flex flex-wrap items-center gap-5"
+            className="mt-10 flex flex-wrap items-center gap-4 sm:gap-5"
           >
-            <a href={heroContent.catalogHref} className="btn-dealer-primary text-white">
+            <button
+              type="button"
+              onClick={openContactOverlay}
+              className="btn-dealer-primary text-white"
+            >
+              {ui.contactUs}
+            </button>
+            <a
+              href={heroContent.catalogHref}
+              className="font-display inline-flex min-h-11 items-center justify-center border border-white/35 bg-white/5 px-5 py-3 text-[12px] uppercase tracking-[0.14em] text-white transition hover:border-white/55 hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold sm:px-7 sm:py-3.5 sm:text-sm sm:tracking-[0.18em]"
+            >
               {ui.catalog}
             </a>
             <a href="#models" className="link-dealer-secondary text-white/90 hover:text-white">

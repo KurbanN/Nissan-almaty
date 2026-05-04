@@ -14,8 +14,8 @@ const cars = [
     offerSuffix: "₸",
     offerFootnote: "Стартовая цена",
     description: "Флагманский SUV с мощным V8 и премиальным уровнем комфорта.",
-    image: assetUrl("cars/hf_20260423_083635_a181ade0-2d4c-4425-8b66-8c6b8cb9ea68.png"),
-    optimizedKey: "patrol",
+    image: assetUrl("cars/slider-patrol.png"),
+    optimizedKey: "slider-patrol",
     imagePosition: "center 56%",
     thumbImagePosition: "center 56%",
   },
@@ -28,24 +28,10 @@ const cars = [
     offerSuffix: "",
     offerFootnote: "Финансирование до 60 месяцев",
     description: "Городской кроссовер с экономичным расходом и современным оснащением.",
-    image: assetUrl("cars/qashqai-new.png"),
+    image: assetUrl("cars/hero-landing-qashqai.png"),
     optimizedKey: "qashqai",
     imagePosition: "center 70%",
     thumbImagePosition: "67% 70%",
-  },
-  {
-    id: "xtrail",
-    name: "Nissan X-Trail",
-    year: "2026",
-    strapline: "Cash Back",
-    offerValue: "1 500 000",
-    offerSuffix: "₸",
-    offerFootnote: "Выгода по trade-in",
-    description: "Практичный SUV для семьи и путешествий, с полным пакетом поддержки.",
-    image: assetUrl("cars/xtrail-new.png"),
-    optimizedKey: "xtrail",
-    imagePosition: "center 90%",
-    thumbImagePosition: "32% 90%",
   },
 ];
 
@@ -304,20 +290,6 @@ const CarSlider = () => {
                 ) : null}
               </div>
             </button>
-          ))}
-        </div>
-
-        <div className="mt-4 flex gap-2">
-          {cars.map((car, index) => (
-            <button
-              key={`${car.id}-dot`}
-              type="button"
-              onClick={() => goTo(index)}
-              aria-label={`Перейти к ${car.name}`}
-              className={`h-1.5 w-8 transition ${
-                index === activeIndex ? "bg-gold" : "bg-line hover:bg-line-strong"
-              }`}
-            />
           ))}
         </div>
       </div>
